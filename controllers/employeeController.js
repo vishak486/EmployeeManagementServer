@@ -47,7 +47,7 @@ exports.deleteEmployeeController=async(req,res)=>{
         const deleteEmployee = await employees.findByIdAndDelete(id)
         if(deleteEmployee)
         {
-            res.status(200).json("Employee deleted successfully")
+            res.status(200).json(deleteEmployee)
         }
         else
         {
