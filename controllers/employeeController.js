@@ -28,9 +28,11 @@ exports.addEmployeeController=async(req,res)=>{
 
 exports.fetchEmployeeController=async(req,res)=>{
     console.log("Inside fetchEmployeeController");
+    const searchKey=req.query.search
+    const query=searchKey?{name:{ $regex: searchKey,$options:'i' }}:{};
     try
     {
-        const AllEmployees=await employees.find()
+        const AllEmployees=await employees.find(query)
         res.status(200).json(AllEmployees)
     }
     catch(err)
